@@ -1,0 +1,52 @@
+<!--// Title: Assignment 4.3 Handling Form Events with Observables
+// Author: Prof Krasso
+// Date: Nov 13 2022
+// Modified: Detres
+//Week-4 exercises/videos
+//https://www.npmjs.com/package/bootstrap-icons
+//https://angular.io/api/router/RouterLink
+//https://angular.io/tutorial/toh-pt5
+//https://stackoverflow.com/questions/
+//41370760difference-between-routerlink-and-routerlink
+//https://stackoverflow.com/questions/56271351/how-to-get-id-from-the-url-using-snapshot-or-activatedroute-subscriber-in-angula
+//https://www.tabnine.com/code/javascript/functions/%40angular%2Frouter/ParamMap/get
+//https://www.youtube.com/watch?time_continue=2&v=4O7eAN3sZ24&feature=emb_logo-->
+
+
+
+
+<!-- Composer list which will be generated  -->
+<div class="row">
+
+  <div class="col-sm-12">
+    <div class="textSearch">
+      <input type="text" id="txtSearch" class="form-control" placeholder="Search by Name"
+        [formControl]="txtSearchControl" />
+    </div>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Composer ID</th>
+          <th scope="col">Full name</th>
+          <th scope="col">Genre</th>
+        </tr>
+      </thead>
+
+      <!-- for statement that loops through arrays of composers -->
+      <tbody *ngFor="let composer of composers">
+        <tr>
+          <!-- composer and genre renders here from composer class instance  -->
+          <!-- routerLink from composer-details added, Composer ID instance added -->
+          <td scope="row">
+            <a routerLink="/composer-details/{{ composer.composerId }}">{{ composer.composerId }}</a>
+          </td>
+          <td scope="row">{{ composer.fullName }}</td>
+          <td scope="row">{{ composer.genre }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div> <iframe src="https://giphy.com/embed/3ohA2L3jm5zHuSBft6" width="480" height="270" frameBorder="0"
+    class="giphy-embed" allowFullScreen></iframe>
+
+</div>
