@@ -1,8 +1,7 @@
-<!--// Title: Assignment 4.3 Handling Form Events with Observables
+<!--/// Title: Assignment 4.4 Async Pipe
 // Author: Prof Krasso
 // Date: Nov 13 2022
 // Modified: Detres
-//Week-4 exercises/videos
 //https://www.npmjs.com/package/bootstrap-icons
 //https://angular.io/api/router/RouterLink
 //https://angular.io/tutorial/toh-pt5
@@ -10,7 +9,12 @@
 //41370760difference-between-routerlink-and-routerlink
 //https://stackoverflow.com/questions/56271351/how-to-get-id-from-the-url-using-snapshot-or-activatedroute-subscriber-in-angula
 //https://www.tabnine.com/code/javascript/functions/%40angular%2Frouter/ParamMap/get
-//https://www.youtube.com/watch?time_continue=2&v=4O7eAN3sZ24&feature=emb_logo-->
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter
+
+-->
 
 
 
@@ -33,7 +37,7 @@
       </thead>
 
       <!-- for statement that loops through arrays of composers -->
-      <tbody *ngFor="let composer of composers">
+      <tbody *ngFor="let composer of composers | async">
         <tr>
           <!-- composer and genre renders here from composer class instance  -->
           <!-- routerLink from composer-details added, Composer ID instance added -->

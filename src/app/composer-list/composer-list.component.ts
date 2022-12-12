@@ -1,8 +1,7 @@
-// Title: Assignment 4.3 Handling Form Events with Observables
+// Title: Assignment 4.4 Async Pipe
 // Author: Prof Krasso
 // Date: Nov 13 2022
 // Modified: Detres
-//Week-3 exercises/videos
 //https://www.npmjs.com/package/bootstrap-icons
 //https://angular.io/api/router/RouterLink
 //https://angular.io/tutorial/toh-pt5
@@ -10,8 +9,10 @@
 //41370760difference-between-routerlink-and-routerlink
 //https://stackoverflow.com/questions/56271351/how-to-get-id-from-the-url-using-snapshot-or-activatedroute-subscriber-in-angula
 //https://www.tabnine.com/code/javascript/functions/%40angular%2Frouter/ParamMap/get
-//https://bobbyhadz.com/blog/typescript-argument-type-null-not-assignable-parameter-type-string
-//https://www.youtube.com/watch?time_continue=2&v=4O7eAN3sZ24&feature=emb_logo
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter
 
 //Imports
 import { Component, OnInit } from '@angular/core';
@@ -22,6 +23,9 @@ import { ComposerService } from '../composer.service';
 
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+
+//assingment 4.4 import
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-composer-list',
   templateUrl: './composer-list.component.html',
@@ -29,7 +33,9 @@ import { debounceTime } from 'rxjs';
 })
 export class ComposerListComponent implements OnInit {
   /* Defines Variables and initializes array */
-  composers: Array<IComposer>;
+  // composers: Array<IComposer>;
+  //composers variable updated for 4.4
+  composers: Observable<IComposer[]>;
   //new form control object with instance
   txtSearchControl = new FormControl('');
 
@@ -42,7 +48,11 @@ export class ComposerListComponent implements OnInit {
   ngOnInit(): void {}
 
   //filter composer function, which calls the alert function
-  filterComposers(name: string) {
-    alert(name);
+  // filterComposers(name: string) {
+  //   alert(name);
+  // }
+  //deleted alert box
+  filterComposers(name: string): void {
+    this.composers = this.composerService.filterComposers(name);
   }
 }

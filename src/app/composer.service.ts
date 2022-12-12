@@ -1,18 +1,25 @@
-// Title: Assignment 4.2 Inversion of Control and Dependency Injection
+// Title: Assignment 4.4 Async Pipe
 // Author: Prof Krasso
-// Date: Nov 12 2022
+// Date: Nov 13 2022
 // Modified: Detres
 //https://www.npmjs.com/package/bootstrap-icons
 //https://angular.io/api/router/RouterLink
 //https://angular.io/tutorial/toh-pt5
 //https://stackoverflow.com/questions/
+//41370760difference-between-routerlink-and-routerlink
 //https://stackoverflow.com/questions/56271351/how-to-get-id-from-the-url-using-snapshot-or-activatedroute-subscriber-in-angula
 //https://www.tabnine.com/code/javascript/functions/%40angular%2Frouter/ParamMap/get
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+// https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer#pipe
+// https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter
 
 // importing of IComposer Interface
 
 import { Injectable } from '@angular/core';
 import { IComposer } from './composer.interface';
+//import for observable object, of operator and map operator
+import { Observable, of, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -52,8 +59,8 @@ export class ComposerService {
     ];
   }
 
-  getComposers() {
-    return this.composers;
+  getComposers(): Observable<IComposer[]> {
+    return of(this.composers);
   }
 
   getComposer(composerId: number): IComposer {
@@ -63,5 +70,16 @@ export class ComposerService {
       }
     }
     return {} as IComposer;
+  }
+  //
+  filterComposers(name: string): Observable<IComposer[]> {
+    //returns observable array of composer objects as full names.
+    return of(this.composers).pipe(
+      map((composers) =>
+        composers.filter(
+          (composer) => composer.fullName.toLowerCase().indexOf(name) > -1
+        )
+      )
+    );
   }
 }
